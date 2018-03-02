@@ -296,6 +296,7 @@ define( function( require ) {
     this.vertexGroupTandem = tandem.createGroupTandem( 'vertices' );
     this.wireGroupTandem = tandem.createGroupTandem( 'wires' );
     this.resistorGroupTandem = tandem.createGroupTandem( 'resistors' );
+    this.capacitorGroupTandem = tandem.createGroupTandem( 'capacitor' );
     this.seriesAmmeterGroupTandem = tandem.createGroupTandem( 'seriesAmmeters' );
     this.switchGroupTandem = tandem.createGroupTandem( 'switches' );
     this.coinGroupTandem = tandem.createGroupTandem( 'coins' );

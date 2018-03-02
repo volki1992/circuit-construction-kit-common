@@ -17,6 +17,7 @@ define( function( require ) {
   var Matrix3 = require( 'DOT/Matrix3' );
   var Panel = require( 'SUN/Panel' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Capacitor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Capacitor' );
   var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
   var RichText = require( 'SCENERY/nodes/RichText' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -28,6 +29,8 @@ define( function( require ) {
 
   // strings
   var resistanceOhmsSymbolString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/resistanceOhmsSymbol' );
+  // TODO: change path
+  var capacitanceFaradsSymbolString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/resistanceOhmsSymbol' );
   var voltageUnitsString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/voltageUnits' );
 
   // constants
@@ -110,6 +113,22 @@ define( function( require ) {
         circuitElement.resistanceProperty.unlink( linkResistance );
       } );
       contentNode.maxWidth = 100;
+    }
+    else if ( circuitElement instanceof Capacitor ) {
+    	contentNode = new Text( '', _.extend( { tandem: tandem.createTandem( 'capacitanceText' ) }, { font: FONT } ) );
+   	
+    	var linkCapacitance = function( capacitance ) {
+            contentNode.text = StringUtils.fillIn( capacitanceFaradsSymbolString, {
+                capacitance: Util.toFixed( capacitance, circuitElement.numberOfDecimalPlaces )
+              } );
+              updatePosition && updatePosition();    		
+    	};
+    	
+		circuitElement.capacitanceProperty.link( linkCapacitance );
+		disposeActions.push( function() {
+	        circuitElement.capacitanceProperty.unlink( linkCapacitance );
+	      } );
+	      contentNode.maxWidth = 100;
     }
     else if ( circuitElement instanceof Switch ) {
 

@@ -26,6 +26,8 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
+  var Capacitor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Capacitor' );
+  var CapacitorNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CapacitorNode' );
   var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
   var ResistorNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/ResistorNode' );
   var ResistorType = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/ResistorType' );
@@ -56,6 +58,7 @@ define( function( require ) {
   var BATTERY_LENGTH = CCKCConstants.BATTERY_LENGTH;
   var TOOLBOX_ICON_SIZE = CCKCConstants.TOOLBOX_ICON_SIZE;
   var RESISTOR_LENGTH = CCKCConstants.RESISTOR_LENGTH;
+  //var CAPACITOR_LEN
   var WIRE_LENGTH = 100;
   var SWITCH_LENGTH = CCKCConstants.SWITCH_LENGTH;
   var HIGH_RESISTANCE = Math.pow( 10, 9 );
@@ -287,7 +290,39 @@ define( function( require ) {
       );
       return resistorToolNode;
     },
+    
+    /**
+     * @param {number} count - the number that can be dragged out at once
+     * @param {Tandem} tandem
+     * @returns {CircuitElementToolNode}
+     * @public
+     */
+    createCapacitorToolNode: function( count, tandem ) {
+      var self = this;
+      var capacitorModel = new Capacitor(
+        new Vertex( Vector2.ZERO ),
+        new Vertex( new Vector2( CCKCConstants.CAPACITOR_LENGTH, 0 ) ),
+        tandem.createTandem( 'capacitor' )
+      );
 
+      // TODO: string ändern
+      var capacitorToolNode = this.createCircuitElementToolNode( resistorString, count,
+        new CapacitorNode( null, null, capacitorModel, this.viewTypeProperty, tandem.createTandem( 'capacitorIcon' ), {
+          isIcon: true
+        } ),
+        function( circuitElement ) {
+          return circuitElement instanceof Capacitor;
+        },
+        function( position ) {
+          var vertexPair = self.createVertexPair( position, CCKCConstants.CAPACITOR_LENGTH );
+          return new Capacitor(
+            vertexPair.startVertex, vertexPair.endVertex, self.circuit.capacitorGroupTandem.createNextTandem()
+          );
+        }
+      );
+      return capacitorToolNode;
+    },
+    
     /**
      * @param {number} count - the number that can be dragged out at once
      * @param {Tandem} tandem

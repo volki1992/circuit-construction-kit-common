@@ -26,6 +26,9 @@ define( function( require ) {
     // The resistance of a default resistor, also used in icons
     DEFAULT_RESISTANCE: 10,
 
+    // The capacitance of a default capacitor, also used in icons
+    DEFAULT_CAPACITANCE: 1E-9,
+
     // The resistance of a default battery
     DEFAULT_BATTERY_RESISTANCE: 0,
 
@@ -73,7 +76,10 @@ define( function( require ) {
 
     // Color of the background
     BACKGROUND_COLOR: new Color( '#99c1ff' ),
-
+    
+    // Length of a capacitor
+    CAPACITOR_LENGTH: 110, 
+    
     // Length of a battery
     BATTERY_LENGTH: 102,
 
