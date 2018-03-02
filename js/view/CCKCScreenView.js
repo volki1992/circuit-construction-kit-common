@@ -191,7 +191,7 @@ define( function( require ) {
       children: !options.showResistivityControl ?
         [ this.displayOptionsPanel, this.sensorToolbox, this.viewRadioButtonGroup ] :
         [ this.displayOptionsPanel, this.sensorToolbox, this.wireResistivityControl, this.batteryResistanceControl,
-          this.viewRadioButtonGroup ]
+          this.circuitFrequencyControl, this.viewRadioButtonGroup ]
     } );
 
     var box = new AlignBox( controlPanelVBox, {
@@ -324,6 +324,7 @@ define( function( require ) {
      */
     reset: function() {
       this.circuitElementToolbox.reset();
+      this.circuitFrequencyControl.expandedProperty.reset();
       this.batteryResistanceControl.expandedProperty.reset();
       this.wireResistivityControl.expandedProperty.reset();
     },
