@@ -14,7 +14,6 @@ define( function( require ) {
   var FixedCircuitElement = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/FixedCircuitElement' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
-  //var ResistorType = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/ResistorType' );
 
   // constants
   var CAPACITOR_LENGTH = CCKCConstants.CAPACITOR_LENGTH;
@@ -35,15 +34,6 @@ define( function( require ) {
       capacitorLength: CAPACITOR_LENGTH,
       isFlammable: true
     }, options );
-//
-//    // validate resistor type
-//    assert && assert( ResistorType.VALUES.indexOf( options.resistorType ) >= 0, 'Unknown resistor type: ' +
-//                                                                                options.resistorType );
-//
-//    // @public (read-only) {ResistorType} indicates one of ResistorType values
-//    this.resistorType = options.resistorType;
-
-//    options.isMetallic = ResistorType.isMetallic( this.resistorType );
 
     FixedCircuitElement.call( this, startVertex, endVertex, options.capacitorLength, tandem, options );
 
@@ -52,9 +42,6 @@ define( function( require ) {
     
     // @public {Property.<number>} the capacitance in farads
     this.capacitanceProperty = new NumberProperty( options.capacitance );
-
-//    // @public (read-only) {number} - the number of decimal places to show in readouts and controls
-//    this.numberOfDecimalPlaces = this.resistorType === ResistorType.RESISTOR ? 1 : 0;
   }
 
   circuitConstructionKitCommon.register( 'Capacitor', Capacitor );
@@ -97,7 +84,6 @@ define( function( require ) {
     toIntrinsicStateObject: function() {
       var parent = FixedCircuitElement.prototype.toIntrinsicStateObject.call( this );
       return _.extend( parent, {
-        //resistorType: this.resistorType,
         resistance: this.resistanceProperty.value,
         capacitance: this.capacitanceProperty.value,
         capacitorLength: this.chargePathLength
