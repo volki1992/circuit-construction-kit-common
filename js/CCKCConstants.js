@@ -32,6 +32,9 @@ define( function( require ) {
     // The range of the battery resistance
     BATTERY_RESISTANCE_RANGE: new Range( 0, 10 ),
 
+    // The default circuit frequency
+    DEFAULT_CIRCUIT_FREQUENCY: 0,
+
     // The range of the battery frequency
     CIRCUIT_FREQUENCY_RANGE: new Range (0, 1000),
 

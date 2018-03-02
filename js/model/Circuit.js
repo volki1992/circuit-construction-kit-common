@@ -79,6 +79,12 @@ define( function( require ) {
       tandem: tandem.createTandem( 'batteryResistanceProperty' )
     } );
 
+    // @public {NumberProperty} - All voltage sources share a circuit frequency value, which can be edited with
+    // a control on the Lab Screen
+    this.circuitFrequencyProperty = new NumberProperty( CCKCConstants.DEFAULT_CIRCUIT_FREQUENCY, {
+      tandem: tandem.createTandem( 'circuitFrequencyProperty' )
+    } );
+
     // @public {ObservableArray.<CircuitElement>} - The different types of CircuitElement the circuit may
     // contain, including Wire, Battery, Switch, Resistor, LightBulb, etc.
     this.circuitElements = new ObservableArray();
