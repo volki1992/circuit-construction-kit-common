@@ -32,6 +32,9 @@ define( function( require ) {
     // The range of the battery resistance
     BATTERY_RESISTANCE_RANGE: new Range( 0, 10 ),
 
+    // The range of the battery frequency
+    CIRCUIT_FREQUENCY_RANGE: new Range (0, 1000),
+
     // Right side panel minWidth
     RIGHT_SIDE_PANEL_MIN_WIDTH: 190,
 

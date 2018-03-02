@@ -118,5 +118,14 @@
   },
   "theSwitchIsOpen": {
     "value": "The switch is open."
+  },
+  "circuitFrequency": {
+      "value": "Circuit Frequency"
+  },
+  "frequency": {
+      "value": "Frequency"
+  },
+  "frequencyHertz": {
+      "value": "{{frequency}} Hz"
   }
 }

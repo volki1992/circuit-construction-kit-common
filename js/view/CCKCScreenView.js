@@ -35,6 +35,7 @@ define( function( require ) {
   var VoltmeterNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/VoltmeterNode' );
   var WireResistivityControl = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/WireResistivityControl' );
   var ZoomControlPanel = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/ZoomControlPanel' );
+  var CircuitFrequencyControl = require('CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CircuitFrequencyControl')
 
   // constants
   var VERTICAL_MARGIN = CCKCConstants.VERTICAL_MARGIN;
@@ -78,6 +79,7 @@ define( function( require ) {
       getCircuitEditPanelLayoutPosition: CircuitElementEditContainerNode.GET_LAYOUT_POSITION,
       showResistivityControl: true,
       showBatteryResistanceControl: true,
+      showCircuitFrequencyControl: true,
 
       blackBoxStudy: false
     }, options );
@@ -158,6 +160,12 @@ define( function( require ) {
       model.circuit.batteryResistanceProperty,
       CONTROL_PANEL_ALIGN_GROUP,
       tandem.createTandem( 'batteryResistanceControl' ) );
+
+    // @private {CircuitFrequencyControl}
+    this.circuitFrequencyControl = new CircuitFrequencyControl(
+      model.circuit.circuitFrequencyProperty,
+      CONTROL_PANEL_ALIGN_GROUP,
+      tandem.createTandem( 'circuitFrequencyControl' ) );
 
     this.addChild( this.circuitLayerNodeBackLayer );
 
