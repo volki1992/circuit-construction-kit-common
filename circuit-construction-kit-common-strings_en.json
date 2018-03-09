@@ -136,5 +136,11 @@
   },
   "capacitanceFaradsValuePattern": {
     "value": "{{capacitance}} F"
+  },
+  "capacitanceFaradsSymbol": {
+    "value": "{{resistance}} F"
+  },
+  "capacitor": {
+    "value": "Capacitor"
   }
 }

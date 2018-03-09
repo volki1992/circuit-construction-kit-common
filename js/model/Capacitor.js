@@ -3,7 +3,7 @@
 /**
  * Model for a capacitor.
  *
- * @author Sam Reid (PhET Interactive Simulations)
+ * @author Christian Volkert
  */
 define( function( require ) {
   'use strict';

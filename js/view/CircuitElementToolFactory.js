@@ -48,6 +48,7 @@ define( function( require ) {
   var paperClipString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/paperClip' );
   var pencilString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/pencil' );
   var resistorString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/resistor' );
+  var capacitorString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/capacitor' )
   var switchString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/switch' );
   var wireString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/wire' );
 
@@ -305,8 +306,7 @@ define( function( require ) {
         tandem.createTandem( 'capacitor' )
       );
 
-      // TODO: string ändern
-      var capacitorToolNode = this.createCircuitElementToolNode( resistorString, count,
+      var capacitorToolNode = this.createCircuitElementToolNode( capacitorString, count,
         new CapacitorNode( null, null, capacitorModel, this.viewTypeProperty, tandem.createTandem( 'capacitorIcon' ), {
           isIcon: true
         } ),
