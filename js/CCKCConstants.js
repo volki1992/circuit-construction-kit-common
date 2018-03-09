@@ -27,7 +27,10 @@ define( function( require ) {
     DEFAULT_RESISTANCE: 10,
 
     // The capacitance of a default capacitor, also used in icons
-    DEFAULT_CAPACITANCE: 1E-9,
+    DEFAULT_CAPACITANCE: 10,
+    
+    // The range of the capacitor capacitance
+    CAPACITOR_CAPACITANCE_RANGE: new Range (0, 100),
 
     // The resistance of a default battery
     DEFAULT_BATTERY_RESISTANCE: 0,

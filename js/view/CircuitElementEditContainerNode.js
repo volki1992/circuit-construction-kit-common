@@ -18,6 +18,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulb = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/LightBulb' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var Capacitor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Capacitor' );
   var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
   var SeriesAmmeter = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/SeriesAmmeter' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -30,6 +31,8 @@ define( function( require ) {
   // strings
   var resistanceOhmsValuePatternString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/resistanceOhmsValuePattern' );
   var resistanceString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/resistance' );
+  var capacitanceFaradsValuePatternString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/capacitanceFaradsValuePattern' );
+  var capacitanceString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/capacitance' );
   var tapCircuitElementToEditString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/tapCircuitElementToEdit' );
   var voltageString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/voltage' );
   var voltageVoltsValuePatternString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/voltageVoltsValuePattern' );
@@ -91,6 +94,7 @@ define( function( require ) {
 
       if ( selectedCircuitElement ) {
         var isResistor = selectedCircuitElement instanceof Resistor || selectedCircuitElement instanceof LightBulb;
+        var isCapacitor = selectedCircuitElement instanceof Capacitor;
         var isBattery = selectedCircuitElement instanceof Battery;
         var isWire = selectedCircuitElement instanceof Wire;
         var isSwitch = selectedCircuitElement instanceof Switch;
@@ -109,6 +113,20 @@ define( function( require ) {
             selectedCircuitElement,
             groupTandem.createNextTandem()
           );
+        }
+        else if ( isCapacitor) {
+            editNode = new CircuitElementEditNode(
+                    capacitanceString,
+
+                    // Adapter to take from {{named}} to {0} for usage in common code
+                    StringUtils.fillIn( capacitanceFaradsValuePatternString, {
+                      capacitance: '{0}'
+                    } ),
+                    selectedCircuitElement.capacitanceProperty,
+                    circuit,
+                    selectedCircuitElement,
+                    groupTandem.createNextTandem()
+                  );
         }
         else if ( isResistor ) {
 

@@ -127,5 +127,14 @@
   },
   "frequencyHertz": {
       "value": "{{frequency}} Hz"
+  },
+  "capacitance": {
+  	"value": "Capacitance"
+  },
+  "capacitanceFarads": {
+    "value": "{{capacitance}} farads"
+  },
+  "capacitanceFaradsValuePattern": {
+    "value": "{{capacitance}} F"
   }
 }
