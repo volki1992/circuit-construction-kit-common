@@ -138,7 +138,7 @@
     "value": "{{capacitance}} F"
   },
   "capacitanceFaradsSymbol": {
-    "value": "{{resistance}} F"
+    "value": "{{capacitance}} F"
   },
   "capacitor": {
     "value": "Capacitor"

@@ -27,10 +27,10 @@ define( function( require ) {
     DEFAULT_RESISTANCE: 10,
 
     // The capacitance of a default capacitor, also used in icons
-    DEFAULT_CAPACITANCE: 10,
+    DEFAULT_CAPACITANCE: 0.159,
     
     // The range of the capacitor capacitance
-    CAPACITOR_CAPACITANCE_RANGE: new Range (0, 100),
+    CAPACITOR_CAPACITANCE_RANGE: new Range (0, 200),
 
     // The resistance of a default battery
     DEFAULT_BATTERY_RESISTANCE: 0,
@@ -39,7 +39,7 @@ define( function( require ) {
     BATTERY_RESISTANCE_RANGE: new Range( 0, 10 ),
 
     // The default circuit frequency
-    DEFAULT_CIRCUIT_FREQUENCY: 0,
+    DEFAULT_CIRCUIT_FREQUENCY: 1,
 
     // The range of the battery frequency
     CIRCUIT_FREQUENCY_RANGE: new Range (0, 1000),
