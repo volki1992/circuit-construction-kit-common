@@ -25,7 +25,7 @@ define( function( require ) {
    * @param {Object} [options]
    * @constructor
    */
-  function Capacitor( startVertex, endVertex, tandem, options ) {
+  function Capacitor( startVertex, endVertex, internalFrequencyProperty, tandem, options ) {
     options = _.extend( {
       resistance: CCKCConstants.DEFAULT_RESISTANCE,
       capacitance: CCKCConstants.DEFAULT_CAPACITANCE,
@@ -42,6 +42,9 @@ define( function( require ) {
     
     // @public {Property.<number>} the capacitance in farads
     this.capacitanceProperty = new NumberProperty( options.capacitance );
+    
+    // @public {Property.<number>} the internal frequency of the capacitor
+    this.internalFrequencyProperty = internalFrequencyProperty;
   }
 
   circuitConstructionKitCommon.register( 'Capacitor', Capacitor );
@@ -54,7 +57,7 @@ define( function( require ) {
      * @public
      */
     isResistanceEditable: function() {
-      return true;
+      return false;
     },
     
     /**
@@ -73,6 +76,9 @@ define( function( require ) {
      * @public
      */
     getCircuitProperties: function() {
+    	
+    	//initial calculation of the resistance (Xc) with the default values
+    	this.resistanceProperty.value = 1 / (2 * 3.14 * this.internalFrequencyProperty.value * this.capacitanceProperty.value); 
       return [ this.resistanceProperty ];
     },
 
