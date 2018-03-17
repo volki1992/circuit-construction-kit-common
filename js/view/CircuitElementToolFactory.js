@@ -303,6 +303,7 @@ define( function( require ) {
       var capacitorModel = new Capacitor(
         new Vertex( Vector2.ZERO ),
         new Vertex( new Vector2( CCKCConstants.CAPACITOR_LENGTH, 0 ) ),
+        new Property( 0 ), //TODO: ändern auf richtigen wert
         tandem.createTandem( 'capacitor' )
       );
 
@@ -316,8 +317,11 @@ define( function( require ) {
         function( position ) {
           var vertexPair = self.createVertexPair( position, CCKCConstants.CAPACITOR_LENGTH );
           return new Capacitor(
-            vertexPair.startVertex, vertexPair.endVertex, self.circuit.capacitorGroupTandem.createNextTandem()
-          );
+            vertexPair.startVertex, vertexPair.endVertex, 
+            self.circuit.circuitFrequencyProperty,            
+            self.circuit.capacitorGroupTandem.createNextTandem(), {
+            	editableRange: CCKCConstants.CAPACITOR_CAPACITANCE_RANGE
+          } );
         }
       );
       return capacitorToolNode;
