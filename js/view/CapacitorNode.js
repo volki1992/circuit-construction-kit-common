@@ -26,7 +26,7 @@ define( function( require ) {
 
   // constants
   // dimensions for schematic capacitor
-  var SMALL_TERMINAL_WIDTH = 50;
+  var SMALL_TERMINAL_WIDTH = 104;
   var LARGE_TERMINAL_WIDTH = 104;
   var WIDTH = 188;
   var GAP = 33;
@@ -45,7 +45,7 @@ define( function( require ) {
     .moveTo( RIGHT_JUNCTION, LARGE_TERMINAL_WIDTH / 2 ) // right plate
     .lineTo( RIGHT_JUNCTION, -LARGE_TERMINAL_WIDTH / 2 );
   var schematicWidth = schematicShape.bounds.width;
-  var desiredWidth = CCKCConstants.BATTERY_LENGTH;
+  var desiredWidth = CCKCConstants.CAPACITOR_LENGTH;
   var schematicScale = desiredWidth / schematicWidth;
 
   // Scale to fit the correct width
