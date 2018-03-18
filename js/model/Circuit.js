@@ -36,7 +36,8 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Vertex' );
   var Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Wire' );
-
+  var Capacitor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Capacitor' );
+  
   // phet-io modules
   var ObjectIO = require( 'ifphetio!PHET_IO/types/ObjectIO' );
   var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
@@ -291,6 +292,8 @@ define( function( require ) {
     } );
 
     this.batteryResistanceProperty.link( solveListener );
+    this.circuitFrequencyProperty.link( solveListener );
+    
 
     // @public (read-only) - for creating tandems
     this.vertexGroupTandem = tandem.createGroupTandem( 'vertices' );
@@ -691,7 +694,13 @@ define( function( require ) {
 
       var batteries = this.circuitElements.getArray().filter( function( b ) { return b instanceof Battery; } );
       var resistors = this.circuitElements.getArray().filter( function( b ) { return !(b instanceof Battery); } );
-
+      
+      resistors.forEach( function( element ){
+    	  if (element instanceof Capacitor){
+          	element.resistanceProperty.value = 1 / (2 * 3.14 * element.internalFrequencyProperty.value * element.capacitanceProperty.value);  
+    	  }
+      } );
+      
       // introduce a synthetic vertex for each battery to model internal resistance
       var resistorAdapters = resistors.map( function( circuitElement ) {
         return new ModifiedNodalAnalysisCircuitElement(

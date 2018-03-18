@@ -79,7 +79,7 @@ define( function( require ) {
     	
     	//initial calculation of the resistance (Xc) with the default values
     	this.resistanceProperty.value = 1 / (2 * 3.14 * this.internalFrequencyProperty.value * this.capacitanceProperty.value); 
-      return [ this.resistanceProperty ];
+      return [ this.resistanceProperty, this.capacitanceProperty ];
     },
 
     /**
