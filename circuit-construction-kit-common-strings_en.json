@@ -142,5 +142,20 @@
   },
   "capacitor": {
     "value": "Capacitor"
+  },
+  "inductance": {
+  	"value": "Inductance"
+  },
+  "inductanceHenry": {
+    "value": "{{inductance}} farads"
+  },
+  "inductanceHenryValuePattern": {
+    "value": "{{inductance}} F"
+  },
+  "inductanceHenrySymbol": {
+    "value": "{{inductance}} H"
+  },
+  "coil": {
+    "value": "Coil"
   }
 }

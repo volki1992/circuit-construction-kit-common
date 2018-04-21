@@ -28,6 +28,8 @@ define( function( require ) {
   var Range = require( 'DOT/Range' );
   var Capacitor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Capacitor' );
   var CapacitorNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CapacitorNode' );
+  var Coil = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Coil' );
+  var CoilNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CoilNode' );
   var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
   var ResistorNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/ResistorNode' );
   var ResistorType = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/ResistorType' );
@@ -48,7 +50,8 @@ define( function( require ) {
   var paperClipString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/paperClip' );
   var pencilString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/pencil' );
   var resistorString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/resistor' );
-  var capacitorString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/capacitor' )
+  var capacitorString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/capacitor' );
+  var coilString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/coil' );
   var switchString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/switch' );
   var wireString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/wire' );
 
@@ -325,6 +328,41 @@ define( function( require ) {
         }
       );
       return capacitorToolNode;
+    },
+
+    /**
+     * @param {number} count - the number that can be dragged out at once
+     * @param {Tandem} tandem
+     * @returns {CircuitElementToolNode}
+     * @public
+     */
+    createCoilToolNode: function( count, tandem ) {
+      var self = this;
+      var coilModel = new Coil(
+        new Vertex( Vector2.ZERO ),
+        new Vertex( new Vector2( CCKCConstants.COIL_LENGTH, 0 ) ),
+        new Property( 0 ), //TODO: ändern auf richtigen wert
+        tandem.createTandem( 'coil' )
+      );
+
+      var coilToolNode = this.createCircuitElementToolNode( coilString, count,
+        new CoilNode( null, null, coilModel, this.viewTypeProperty, tandem.createTandem( 'coilIcon' ), {
+          isIcon: true
+        } ),
+        function( circuitElement ) {
+          return circuitElement instanceof Coil;
+        },
+        function( position ) {
+          var vertexPair = self.createVertexPair( position, CCKCConstants.COIL_LENGTH );
+          return new Coil(
+            vertexPair.startVertex, vertexPair.endVertex, 
+            self.circuit.circuitFrequencyProperty,            
+            self.circuit.coilGroupTandem.createNextTandem(), {
+            	editableRange: CCKCConstants.COIL_INDUCTANCE_RANGE
+          } );
+        }
+      );
+      return coilToolNode;
     },
     
     /**

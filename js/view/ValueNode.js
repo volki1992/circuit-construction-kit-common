@@ -18,6 +18,7 @@ define( function( require ) {
   var Panel = require( 'SUN/Panel' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Capacitor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Capacitor' );
+  var Coil = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Coil' );
   var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
   var RichText = require( 'SCENERY/nodes/RichText' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -30,6 +31,7 @@ define( function( require ) {
   // strings
   var resistanceOhmsSymbolString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/resistanceOhmsSymbol' );
   var capacitanceFaradsSymbolString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/capacitanceFaradsSymbol' );
+  var inductanceHenrySymbolString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/inductanceHenrySymbol' );
   var voltageUnitsString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_COMMON/voltageUnits' );
 
   // constants
@@ -113,6 +115,116 @@ define( function( require ) {
       } );
       contentNode.maxWidth = 100;
     }
+//    else if ( circuitElement instanceof Capacitor ) {
+//    	
+//
+//
+////      var voltageText = new Text( '', _.extend( { tandem: tandem.createTandem( 'voltageText' ) }, { font: FONT } ) );
+////      var voltageListener = function( voltage ) {
+////
+////          voltageText.text = StringUtils.fillIn( voltageUnitsString, {
+////            voltage: Util.toFixed( voltage, circuitElement.numberOfDecimalPlaces )
+////          } );
+////          updatePosition && updatePosition();
+////        };
+////        circuitElement.voltageProperty.link( voltageListener );
+////
+////        // Battery readouts shows voltage and internal resistance if it is nonzero
+////        contentNode = new VBox( {
+////          align: 'right',
+////          children: [ voltageText ]
+////        } );
+//
+//        var resistanceNode = new Text( '', _.extend( {
+//          tandem: tandem.createTandem( 'resistanceText' )
+//        }, { font: FONT } ) );
+//        var internalResistanceListener = function( internalResistance, lastInternalResistance ) {
+//          resistanceNode.text = StringUtils.fillIn( resistanceOhmsSymbolString, {
+//            resistance: Util.toFixed( internalResistance, 1 )
+//          } );
+//
+//          // If the children should change, update them here
+//          if ( lastInternalResistance === null || (internalResistance === 0 || lastInternalResistance === 0) ) {
+//            var desiredChildren = internalResistance > 0 ? [ voltageText, resistanceNode ] : [ voltageText ];
+//
+//            // Only set children if changed
+//            if ( contentNode.getChildrenCount() !== desiredChildren.length ) {
+//              contentNode.children = desiredChildren;
+//            }
+//          }
+//          updatePosition && updatePosition();
+//        };
+//        circuitElement.internalResistanceProperty.link( internalResistanceListener );
+//
+//        disposeActions.push( function() {
+//          circuitElement.voltageProperty.unlink( voltageListener );
+//          circuitElement.internalResistanceProperty.unlink( internalResistanceListener );
+//        } );
+//        contentNode.maxWidth = 100;
+//      
+//    }
+//
+////        var capacitanceText = new Text( '', _.extend( { tandem: tandem.createTandem( 'capacitanceText' ) }, { font: FONT } ) );
+////        var capacitanceListener = function( capacitance ) {
+////
+////          capacitanceText.text = StringUtils.fillIn( capacitanceFaradsSymbolString, {
+////            capacitance: Util.toFixed( capacitance, circuitElement.numberOfDecimalPlaces )
+////          } );
+////          updatePosition && updatePosition();
+////        };
+////        circuitElement.capacitanceProperty.link( capacitanceListener );
+////
+////        // Battery readouts shows voltage and internal resistance if it is nonzero
+////        contentNode = new VBox( {
+////          align: 'right',
+////          children: [ capacitanceText ]
+////        } );
+//
+////        var resistanceNode = new Text( '', _.extend( {
+////          tandem: tandem.createTandem( 'resistanceText' )
+////        }, { font: FONT } ) );
+//
+//        var resistanceText = new Text( '', _.extend( { tandem: tandem.createTandem( 'resistanceText' ) }, { font: FONT } ) );
+//        var resistanceListener = function( resistance ) {
+//
+//            resistanceText.text = StringUtils.fillIn( resistanceOhmsSymbolString, {
+//            	resistance: Util.toFixed( resistance, circuitElement.numberOfDecimalPlaces )
+//            } );
+//            updatePosition && updatePosition();
+//          };
+//          circuitElement.resistanceProperty.link( resistanceListener );
+//          
+//          contentNode = new VBox( {
+//              align: 'right',
+//              children: [ resistanceText ]
+//            } );
+//// test with intResistiance         
+//        var internalResistanceListener = function( internalResistance, lastInternalResistance ) {
+//          resistanceNode.text = StringUtils.fillIn( resistanceOhmsSymbolString, {
+//            resistance: Util.toFixed( internalResistance, 1 )
+//          } );
+//
+//          // If the children should change, update them here
+//          if ( lastInternalResistance === null || (internalResistance === 0 || lastInternalResistance === 0) ) {
+//            var desiredChildren = internalResistance > 0 ? [ voltageText, resistanceNode ] : [ voltageText ];
+//
+//            // Only set children if changed
+//            if ( contentNode.getChildrenCount() !== desiredChildren.length ) {
+//              contentNode.children = desiredChildren;
+//            }
+//          }
+//          updatePosition && updatePosition();
+//        };
+//        circuitElement.internalResistanceProperty.link( internalResistanceListener );
+//
+//        disposeActions.push( function() {
+//          //circuitElement.capacitanceProperty.unlink( capacitanceListener );
+//          circuitElement.resistanceProperty.unlink( resistanceListener );
+//        } );
+//        contentNode.maxWidth = 100;
+//      }
+    
+//OLD STATE OF VISABLE VALUES
     else if ( circuitElement instanceof Capacitor ) {
     	contentNode = new Text( '', _.extend( { tandem: tandem.createTandem( 'capacitanceText' ) }, { font: FONT } ) );
    	
@@ -129,6 +241,24 @@ define( function( require ) {
 	      } );
 	      contentNode.maxWidth = 100;
     }
+    
+    else if ( circuitElement instanceof Coil ) {
+    	contentNode = new Text( '', _.extend( { tandem: tandem.createTandem( 'inductanceText' ) }, { font: FONT } ) );
+	
+	var linkInductance = function( inductance ) {
+        contentNode.text = StringUtils.fillIn( inductanceHenrySymbolString, {
+            inductance: Util.toFixed( inductance, circuitElement.numberOfDecimalPlaces )
+          } );
+          updatePosition && updatePosition();    		
+	};
+	
+	circuitElement.inductanceProperty.link( linkInductance );
+	disposeActions.push( function() {
+        circuitElement.inductanceProperty.unlink( linkInductance );
+      } );
+      contentNode.maxWidth = 100;
+  	}
+    
     else if ( circuitElement instanceof Switch ) {
 
       // Make it easier to read the infinity symbol, see https://github.com/phetsims/circuit-construction-kit-dc/issues/135

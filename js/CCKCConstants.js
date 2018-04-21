@@ -29,8 +29,14 @@ define( function( require ) {
     // The capacitance of a default capacitor, also used in icons
     DEFAULT_CAPACITANCE: 0.159,
     
+    // The inductance of a default coil, also used in icons
+    DEFAULT_INDUCTANCE: 10,
+    
     // The range of the capacitor capacitance
     CAPACITOR_CAPACITANCE_RANGE: new Range (0, 200),
+    
+    // The range of the coil inductance
+    COIL_INDUCTANCE_RANGE: new Range (0, 200),
 
     // The resistance of a default battery
     DEFAULT_BATTERY_RESISTANCE: 0,
@@ -81,7 +87,10 @@ define( function( require ) {
     BACKGROUND_COLOR: new Color( '#99c1ff' ),
     
     // Length of a capacitor
-    CAPACITOR_LENGTH: 110, 
+    CAPACITOR_LENGTH: 110,
+    
+    // Length of a coil
+    COIL_LENGTH: 110, 
     
     // Length of a battery
     BATTERY_LENGTH: 102,

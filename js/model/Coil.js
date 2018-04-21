@@ -1,7 +1,7 @@
 // Copyright 2015-2017, University of Colorado Boulder
 
 /**
- * Model for a capacitor.
+ * Model for a coil.
  *
  * @author Christian Volkert
  */
@@ -16,7 +16,7 @@ define( function( require ) {
   var NumberProperty = require( 'AXON/NumberProperty' );
 
   // constants
-  var CAPACITOR_LENGTH = CCKCConstants.CAPACITOR_LENGTH;
+  var COIL_LENGTH = CCKCConstants.COIL_LENGTH;
 
   /**
    * @param {Vertex} startVertex
@@ -25,31 +25,31 @@ define( function( require ) {
    * @param {Object} [options]
    * @constructor
    */
-  function Capacitor( startVertex, endVertex, internalFrequencyProperty, tandem, options ) {
+  function Coil( startVertex, endVertex, internalFrequencyProperty, tandem, options ) {
     options = _.extend( {
       resistance: CCKCConstants.DEFAULT_RESISTANCE,
-      capacitance: CCKCConstants.DEFAULT_CAPACITANCE,
+      inductance: CCKCConstants.DEFAULT_INDUCTANCE,
 
       // Support for rendering household items or
-      capacitorLength: CAPACITOR_LENGTH,
+      coilLength: COIL_LENGTH,
       isFlammable: true
     }, options );
 
-    FixedCircuitElement.call( this, startVertex, endVertex, options.capacitorLength, tandem, options );
+    FixedCircuitElement.call( this, startVertex, endVertex, options.coilLength, tandem, options );
 
     // @public {Property.<number>} the resistance in ohms
     this.resistanceProperty = new NumberProperty( options.resistance );
     
     // @public {Property.<number>} the capacitance in farads
-    this.capacitanceProperty = new NumberProperty( options.capacitance );
+    this.inductanceProperty = new NumberProperty( options.inductance );
     
     // @public {Property.<number>} the internal frequency of the capacitor
     this.internalFrequencyProperty = internalFrequencyProperty;
   }
 
-  circuitConstructionKitCommon.register( 'Capacitor', Capacitor );
+  circuitConstructionKitCommon.register( 'Coil', Coil );
 
-  return inherit( FixedCircuitElement, Capacitor, {
+  return inherit( FixedCircuitElement, Coil, {
 
     /**
      * Returns true if the resistance is editable.  Household item resistance is not editable.
@@ -61,11 +61,11 @@ define( function( require ) {
     },
     
     /**
-     * Returns true if the capacitance is editable.
+     * Returns true if the inductance is editable.
      * @returns {boolean}
      * @public
      */
-    isCapacitanceEditable: function() {
+    isInductanceEditable: function() {
       return true;
     },
 
@@ -77,9 +77,9 @@ define( function( require ) {
      */
     getCircuitProperties: function() {
     	
-    	//initial calculation of the resistance (Xc) with the default values
-    	this.resistanceProperty.value = 1 / (2 * 3.14 * this.internalFrequencyProperty.value * this.capacitanceProperty.value); 
-      return [ this.resistanceProperty, this.capacitanceProperty ];
+    	//initial calculation of the resistance (X_L) with the default values
+    	this.resistanceProperty.value = (2 * 3.14 * this.internalFrequencyProperty.value * this.inductanceProperty.value); 
+      return [ this.resistanceProperty, this.inductanceProperty ];
     },
 
     /**
@@ -90,9 +90,9 @@ define( function( require ) {
     toIntrinsicStateObject: function() {
       var parent = FixedCircuitElement.prototype.toIntrinsicStateObject.call( this );
       return _.extend( parent, {
-    	capacitance: this.capacitanceProperty.value,
+    	inductance: this.inductanceProperty.value,
         resistance: this.resistanceProperty.value,
-        capacitorLength: this.chargePathLength
+        coilLength: this.chargePathLength
       } );
     }
   } );

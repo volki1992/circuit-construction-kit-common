@@ -36,7 +36,9 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Property = require( 'AXON/Property' );
   var Capacitor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Capacitor' );
-  var CapacitorNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CapacitorNode' );  
+  var CapacitorNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CapacitorNode' );
+  var Coil = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Coil' );
+  var CoilNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CoilNode' ); 
   var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
   var ResistorNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/ResistorNode' );
   var RoundPushButton = require( 'SUN/buttons/RoundPushButton' );
@@ -140,6 +142,7 @@ define( function( require ) {
         children: []
           .concat( BatteryNode.webglSpriteNodes )
           .concat( CapacitorNode.webglSpriteNodes )
+          .concat( CoilNode.webglSpriteNodes )
           .concat( ResistorNode.webglSpriteNodes )
           .concat( FixedCircuitElementNode.webglSpriteNodes )
           .concat( CustomLightBulbNode.webglSpriteNodes )
@@ -309,6 +312,9 @@ define( function( require ) {
     } );
     initializeCircuitElementType( Capacitor, this.fixedCircuitElementLayer, tandem.createGroupTandem( 'capacitorNode' ), function( circuitElement, tandem ) {
         return new CapacitorNode( screenView, self, circuitElement, self.model.viewTypeProperty, tandem );
+      } );
+    initializeCircuitElementType( Coil, this.fixedCircuitElementLayer, tandem.createGroupTandem( 'coilNode' ), function( circuitElement, tandem ) {
+        return new CoilNode( screenView, self, circuitElement, self.model.viewTypeProperty, tandem );
       } );
     initializeCircuitElementType( SeriesAmmeter, this.fixedCircuitElementLayer, tandem.createGroupTandem( 'seriesAmmeterNode' ), function( circuitElement, tandem ) {
       return new SeriesAmmeterNode( screenView, self, circuitElement, tandem );

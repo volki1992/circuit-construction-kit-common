@@ -37,6 +37,7 @@ define( function( require ) {
   var Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Vertex' );
   var Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Wire' );
   var Capacitor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Capacitor' );
+  var Coil = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Coil' );
   
   // phet-io modules
   var ObjectIO = require( 'ifphetio!PHET_IO/types/ObjectIO' );
@@ -300,6 +301,7 @@ define( function( require ) {
     this.wireGroupTandem = tandem.createGroupTandem( 'wires' );
     this.resistorGroupTandem = tandem.createGroupTandem( 'resistors' );
     this.capacitorGroupTandem = tandem.createGroupTandem( 'capacitor' );
+    this.coilGroupTandem = tandem.createGroupTandem( 'coil' );
     this.seriesAmmeterGroupTandem = tandem.createGroupTandem( 'seriesAmmeters' );
     this.switchGroupTandem = tandem.createGroupTandem( 'switches' );
     this.coinGroupTandem = tandem.createGroupTandem( 'coins' );
@@ -699,6 +701,9 @@ define( function( require ) {
     	  if (element instanceof Capacitor){
           	element.resistanceProperty.value = 1 / (2 * 3.14 * element.internalFrequencyProperty.value * element.capacitanceProperty.value);  
     	  }
+    	  if (element instanceof Coil){
+            element.resistanceProperty.value = (2 * 3.14 * element.internalFrequencyProperty.value * element.inductanceProperty.value);  
+      	  }
       } );
       
       // introduce a synthetic vertex for each battery to model internal resistance
