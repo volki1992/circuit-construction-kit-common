@@ -306,7 +306,7 @@ define( function( require ) {
       var capacitorModel = new Capacitor(
         new Vertex( Vector2.ZERO ),
         new Vertex( new Vector2( CCKCConstants.CAPACITOR_LENGTH, 0 ) ),
-        new Property( 0 ), //TODO: ändern auf richtigen wert
+        new Property( 0 ),
         tandem.createTandem( 'capacitor' )
       );
 

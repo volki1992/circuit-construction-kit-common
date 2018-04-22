@@ -118,7 +118,7 @@ define( function( require ) {
             groupTandem.createNextTandem()
           );
         }
-        else if ( isCapacitor) {
+        else if ( isCapacitor) {	
         	console.log("capacitanceProperty" + selectedCircuitElement.capacitanceProperty)
         	console.log("resistanceProperty" + selectedCircuitElement.resistanceProperty)
         	console.log("internalFrequencyProperty" + selectedCircuitElement.internalFrequencyProperty)

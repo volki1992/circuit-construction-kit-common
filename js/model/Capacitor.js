@@ -57,7 +57,7 @@ define( function( require ) {
      * @public
      */
     isResistanceEditable: function() {
-      return false;
+      return true;
     },
     
     /**
