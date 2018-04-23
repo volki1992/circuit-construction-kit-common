@@ -709,10 +709,10 @@ define( function( require ) {
     	  
     	  if (element instanceof Coil){
     		  if(!(element.oldfreq ==  element.internalFrequencyProperty.value)){
-        		  element.resistanceProperty.value = 1 / (2 * 3.14 * element.internalFrequencyProperty.value * element.inductanceProperty.value);  
+        		  element.resistanceProperty.value = (2 * 3.14 * element.internalFrequencyProperty.value * element.inductanceProperty.value);  
         		  }
         		  if(element.oldfreq ==  element.internalFrequencyProperty.value){
-            		  element.inductanceProperty.value = 1 / (2 * 3.14 * element.internalFrequencyProperty.value * element.resistanceProperty.value);            	
+            		  element.inductanceProperty.value = ( element.resistanceProperty.value /(2 * 3.14 * element.internalFrequencyProperty.value));            	
             		  }
         		  element.oldfreq = element.internalFrequencyProperty.value;
         		  }
