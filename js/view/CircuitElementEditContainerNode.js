@@ -121,15 +121,14 @@ define( function( require ) {
         else if ( isCapacitor) {	
         	console.log("capacitanceProperty" + selectedCircuitElement.capacitanceProperty)
         	console.log("resistanceProperty" + selectedCircuitElement.resistanceProperty)
-        	console.log("internalFrequencyProperty" + selectedCircuitElement.internalFrequencyProperty)
             editNode = new CircuitElementEditNode(
-                    capacitanceString,
-                    ("" + selectedCircuitElement.capacitanceProperty.value),
+                    resistanceString,
+                    ("" + selectedCircuitElement.resistanceProperty.value),
 //                    // Adapter to take from {{named}} to {0} for usage in common code
-//                    StringUtils.fillIn( capacitanceFaradsValuePatternString, {
-//                      capacitance: '{0}'
+//                    StringUtils.fillIn( resistanceOhmsValuePatternString, {
+//                      reistance: '{0}'
 //                    } ),
-                    selectedCircuitElement.capacitanceProperty,
+                    selectedCircuitElement.resistanceProperty,
                     circuit,
                     selectedCircuitElement,
                     groupTandem.createNextTandem()
@@ -138,15 +137,14 @@ define( function( require ) {
         else if ( isCoil) {
         	console.log("inductanceProperty" + selectedCircuitElement.inductanceProperty)
         	console.log("resistanceProperty" + selectedCircuitElement.resistanceProperty)
-        	console.log("internalFrequencyProperty" + selectedCircuitElement.internalFrequencyProperty)
             editNode = new CircuitElementEditNode(
-                    inductanceString,
-                    ("" + selectedCircuitElement.inductanceProperty.value),
+                    resistanceString,
+                    ("" + selectedCircuitElement.resistanceProperty.value),
 //                    // Adapter to take from {{named}} to {0} for usage in common code
 //                    StringUtils.fillIn( capacitanceFaradsValuePatternString, {
 //                      capacitance: '{0}'
 //                    } ),
-                    selectedCircuitElement.inductanceProperty,
+                    selectedCircuitElement.resistanceProperty,
                     circuit,
                     selectedCircuitElement,
                     groupTandem.createNextTandem()

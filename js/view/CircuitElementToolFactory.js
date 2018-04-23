@@ -323,7 +323,7 @@ define( function( require ) {
             vertexPair.startVertex, vertexPair.endVertex, 
             self.circuit.circuitFrequencyProperty,            
             self.circuit.capacitorGroupTandem.createNextTandem(), {
-            	editableRange: CCKCConstants.CAPACITOR_CAPACITANCE_RANGE
+            	editableRange: CCKCConstants.CAPACITOR_RESISTANCE_RANGE
           } );
         }
       );
@@ -341,7 +341,7 @@ define( function( require ) {
       var coilModel = new Coil(
         new Vertex( Vector2.ZERO ),
         new Vertex( new Vector2( CCKCConstants.COIL_LENGTH, 0 ) ),
-        new Property( 0 ), //TODO: ändern auf richtigen wert
+        new Property( 0 ),
         tandem.createTandem( 'coil' )
       );
 
@@ -358,7 +358,7 @@ define( function( require ) {
             vertexPair.startVertex, vertexPair.endVertex, 
             self.circuit.circuitFrequencyProperty,            
             self.circuit.coilGroupTandem.createNextTandem(), {
-            	editableRange: CCKCConstants.COIL_INDUCTANCE_RANGE
+            	editableRange: CCKCConstants.COIL_RESISTANCE_RANGE
           } );
         }
       );

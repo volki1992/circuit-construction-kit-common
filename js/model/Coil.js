@@ -45,6 +45,9 @@ define( function( require ) {
     
     // @public {Property.<number>} the internal frequency of the capacitor
     this.internalFrequencyProperty = internalFrequencyProperty;
+    
+    // to help distinct between a Frequency of Resistance change
+    this.oldfreq = internalFrequencyProperty.value;
   }
 
   circuitConstructionKitCommon.register( 'Coil', Coil );
@@ -57,7 +60,7 @@ define( function( require ) {
      * @public
      */
     isResistanceEditable: function() {
-      return false;
+      return true;
     },
     
     /**
@@ -78,7 +81,7 @@ define( function( require ) {
     getCircuitProperties: function() {
     	
     	//initial calculation of the resistance (X_L) with the default values
-    	this.resistanceProperty.value = (2 * 3.14 * this.internalFrequencyProperty.value * this.inductanceProperty.value); 
+    	this.inductanceProperty.value = ( this.resistanceProperty.value / (2 * 3.14 * this.internalFrequencyProperty.value )); 
       return [ this.resistanceProperty, this.inductanceProperty ];
     },
 

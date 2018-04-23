@@ -33,10 +33,10 @@ define( function( require ) {
     DEFAULT_INDUCTANCE: 10,
     
     // The range of the capacitor capacitance
-    CAPACITOR_CAPACITANCE_RANGE: new Range (0, 200),
+    CAPACITOR_RESISTANCE_RANGE: new Range (0, 200),
     
     // The range of the coil inductance
-    COIL_INDUCTANCE_RANGE: new Range (0, 200),
+    COIL_RESISTANCE_RANGE: new Range (0, 200),
 
     // The resistance of a default battery
     DEFAULT_BATTERY_RESISTANCE: 0,

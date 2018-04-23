@@ -86,7 +86,7 @@ define( function( require ) {
     this.circuitFrequencyProperty = new NumberProperty( CCKCConstants.DEFAULT_CIRCUIT_FREQUENCY, {
       tandem: tandem.createTandem( 'circuitFrequencyProperty' )
     } );
-
+    //this.oldCircuitFrequency = this.circuitFrequencyProperty.value;
     // @public {ObservableArray.<CircuitElement>} - The different types of CircuitElement the circuit may
     // contain, including Wire, Battery, Switch, Resistor, LightBulb, etc.
     this.circuitElements = new ObservableArray();
@@ -696,14 +696,26 @@ define( function( require ) {
 
       var batteries = this.circuitElements.getArray().filter( function( b ) { return b instanceof Battery; } );
       var resistors = this.circuitElements.getArray().filter( function( b ) { return !(b instanceof Battery); } );
-      
       resistors.forEach( function( element ){
     	  if (element instanceof Capacitor){
-          	element.resistanceProperty.value = 1 / (2 * 3.14 * element.internalFrequencyProperty.value * element.capacitanceProperty.value);  
-    	  }
+    		  if(!(element.oldfreq ==  element.internalFrequencyProperty.value)){
+    		  element.resistanceProperty.value = 1 / (2 * 3.14 * element.internalFrequencyProperty.value * element.capacitanceProperty.value);  
+    		  }
+    		  if(element.oldfreq ==  element.internalFrequencyProperty.value){
+        		  element.capacitanceProperty.value = 1 / (2 * 3.14 * element.internalFrequencyProperty.value * element.resistanceProperty.value);            	
+        		  }
+    		  element.oldfreq = element.internalFrequencyProperty.value;
+    		  }
+    	  
     	  if (element instanceof Coil){
-            element.resistanceProperty.value = (2 * 3.14 * element.internalFrequencyProperty.value * element.inductanceProperty.value);  
-      	  }
+    		  if(!(element.oldfreq ==  element.internalFrequencyProperty.value)){
+        		  element.resistanceProperty.value = 1 / (2 * 3.14 * element.internalFrequencyProperty.value * element.inductanceProperty.value);  
+        		  }
+        		  if(element.oldfreq ==  element.internalFrequencyProperty.value){
+            		  element.inductanceProperty.value = 1 / (2 * 3.14 * element.internalFrequencyProperty.value * element.resistanceProperty.value);            	
+            		  }
+        		  element.oldfreq = element.internalFrequencyProperty.value;
+        		  }
       } );
       
       // introduce a synthetic vertex for each battery to model internal resistance

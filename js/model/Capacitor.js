@@ -45,6 +45,9 @@ define( function( require ) {
     
     // @public {Property.<number>} the internal frequency of the capacitor
     this.internalFrequencyProperty = internalFrequencyProperty;
+    
+    // to help distinct between a Frequency of Resistance change
+    this.oldfreq = internalFrequencyProperty.value;
   }
 
   circuitConstructionKitCommon.register( 'Capacitor', Capacitor );
@@ -78,8 +81,8 @@ define( function( require ) {
     getCircuitProperties: function() {
     	
     	//initial calculation of the resistance (Xc) with the default values
-    	this.resistanceProperty.value = 1 / (2 * 3.14 * this.internalFrequencyProperty.value * this.capacitanceProperty.value); 
-      return [ this.resistanceProperty, this.capacitanceProperty ];
+    	this.capacitanceProperty.value = 1 / (2 * 3.14 * this.internalFrequencyProperty.value * this.resistanceProperty.value); 
+    	return [ this.resistanceProperty, this.capacitanceProperty ];
     },
 
     /**
